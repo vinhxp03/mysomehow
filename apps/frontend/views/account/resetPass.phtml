@@ -1,0 +1,38 @@
+<div id="layout-page" class="pd40">
+	<div  class="container">
+		<div class="main-title2 text-center mb30">
+			<h1>Tài khoản của bạn <a class="logout" href="<?= $this->url->get('account/logout') ?>"><span class="fa fa-sign-out"></span>Thoát</a></h1>
+		</div>
+		<div class="content-page">
+			<div class="col-md-6 col-md-offset-3">
+				<?= $this->flashSession->output() ?>
+			</div>
+			<form accept-charset='UTF-8' action='' method='post'>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
+						<input type="password" class="form-control textbox" name="oldpassword"  size="40" value="" placeholder="Mật khẩu cũ">
+					</div>
+				</div>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
+						<input type="password" class="form-control textbox" name="newpassword"  size="40" value="" placeholder="Mật khẩu mới">
+					</div>
+				</div>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
+						<input type="password" class="form-control textbox" name="checkpassword"  size="40" value="" placeholder="Nhập lại mật khẩu">
+					</div>
+				</div>
+				<div class="col-md-6 col-md-offset-3">
+					<div class="action_bottom">
+						<input class="btn bt-primary" type="submit" value="Cập nhật" />
+						<span class="">hoặc <a href="<?= $this->url->get('account') ?>">Hủy</a></span>
+					</div>  
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

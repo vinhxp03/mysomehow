@@ -1,0 +1,118 @@
+<!-- layout carousel -->
+<?php $this->partial("shared/carousel"); ?>
+
+<!-- layout banner index -->
+<div class="banner-index">
+   <div class="main-title text-center">
+      <div class="container">
+         <h2>Sản phẩm mới</h2>
+         <p class="shop-now pull-right">
+            <a href="<?php echo $this->url->get('collections/san-pham-moi') ?>">Xem thêm <i class="fa fa-angle-double-right"></i></a>
+         </p>
+      </div>
+   </div>
+
+   <div class="container wrapper" style="margin-top: 20px;">
+      <div class="row">
+         <div class="grid-item">
+            <div class="grid-uniform">
+               <!-- ----------------------------------------------------- -->
+               <?php foreach ($new_products as $product) : ?>
+               <div class="grid-item small--one-half medium--one-quarter large--one-quarter">
+                  <a href="<?= $this->url->get('products/'.$product->_id) ?>" class="product-grid-item">
+                     <div class="product-grid-image">
+                        <div class="product-grid-image--centered">
+                           <div class="lazyload__image-wrapper no-js" style="padding-top:150.0%;">
+                              <img data-srcset="" height="330px" srcset="<?= $this->url->get('img/product/'.$product->images[0]['link']) ?>">
+                           </div>
+                        </div>
+                     </div>
+                     <p><?= $product->title ?></p>
+                     <div class="product-item--price">
+                        <span class="h1 medium--left">
+                        <small aria-hidden="true"><?= number_format($product->price['promo_price']) ?>₫</small>
+                        </span>
+                     </div>
+                     <div class="color">
+                        <ul class="list-inline text-center">
+                        <?php foreach ($product->images as $img):?>
+                        <?php if( $img['color'] != null ): ?>
+                           <li class="list-inline-item" title="<?= $img['color'] ?>">
+                              <img style="width: 40px;height: 40px;border-radius: 50%;" src="<?= $this->url->get('img/product/'.$img['link']) ?>">
+                           </li>
+                        <?php endif ?>
+                        <?php endforeach; ?>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <?php endforeach; ?>
+            </div>
+         </div>
+         
+      </div>
+   </div>
+</div>
+
+<!-- layout all items -->
+<div class="main-title text-center">
+   <div class="container">
+      <h2>Sản phẩm bán chạy</h2>
+      <p class="shop-now pull-right">
+         <a href="<?php echo $this->url->get('collections/san-pham-ban-chay') ?>">Xem thêm <i class="fa fa-angle-double-right"></i></a>
+      </p>
+   </div>
+</div>
+<main class="wrapper main-content" role="main">
+   <div id="shopify-section-collection-template" class="shopify-section collection-template-section">
+   <div class="grid grid-border">
+   <div class="grid-item">
+      <div class="grid-uniform">
+         <!-- ----------------------------------------------------- -->
+         <?php foreach ($sold_products as $product) : ?>
+         <div class="grid-item small--one-half medium--one-quarter large--one-quarter">
+            <a href="<?= $this->url->get('products/'.$product->_id) ?>" class="product-grid-item">
+               <div class="product-grid-image">
+                  <div class="product-grid-image--centered">
+                     <div class="lazyload__image-wrapper no-js" style="padding-top:150.0%;">
+                        <img data-srcset="" height="330px" srcset="<?= $this->url->get('img/product/'.$product->images[1]['link']) ?>">
+                     </div>
+                  </div>
+               </div>
+               <p><?= $product->title ?></p>
+               <div class="product-item--price">
+                  <span class="h1 medium--left">
+                  <small aria-hidden="true"><?= number_format($product->price['promo_price']) ?>₫</small>
+                  </span>
+               </div>
+               <div class="color">
+                        <ul class="list-inline text-center">
+                        <?php foreach ($product->images as $img):?>
+                        <?php if( $img['color'] != null ): ?>
+                           <li class="list-inline-item" title="<?= $img['color'] ?>">
+                              <img style="width: 40px;height: 40px;border-radius: 50%;" src="<?= $this->url->get('img/product/'.$img['link']) ?>">
+                           </li>
+                        <?php endif ?>
+                        <?php endforeach; ?>
+                        </ul>
+                     </div>
+            </a>
+         </div>
+         <?php endforeach; ?>
+      </div>
+   </div>
+</main>
+
+<!-- layout banner bottom -->
+<?php //$this->partial("shared/banner-bottom"); ?>
+
+<script type="text/javascript">
+   $(document).ready(function () {
+      $('#sort_by').change(function () {
+         $('#form_sort').submit();
+      });
+   })
+</script>
+
+
+

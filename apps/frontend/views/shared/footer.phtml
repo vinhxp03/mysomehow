@@ -1,0 +1,33 @@
+<footer>
+	<div class="footer-block">
+		<div class="container">
+			<div class="footer-address clearfix">
+				<?php $count = 1; foreach ($setting->info as $info) : ?>
+				<div class="col-md-4">
+					<div class="adress-item">
+						<h4>Store <?= $count ?></h4>
+						<ul>
+							<li class="add"><i class="fa fa-home"></i><?= $info['address'] ?></li>
+							<li class="hotline"><a href="tel:0909045600"><i class="fa fa-phone"></i>
+								<?= $info['phone'] ?></a></li>
+						</ul>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+	<div class="footer-socials text-center">
+		<div class="container">
+			<h4>Like Somehow trên mạng xã hội</h4>
+			<ul class="clearfix">
+				<li><a href="<?= $setting->social['facebook'] ?>" class="fb"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="<?= $setting->social['instagram'] ?>" class="in"><i class="fa fa-instagram"></i></a></li>
+			</ul>
+		</div>
+	</div><br>
+	<div class="copyright">
+		© <?= date('Y') ?> SOMEHOW. Văn phòng: <?= $setting->info[0]['address'] ?>
+	</div>
+</footer>
+	

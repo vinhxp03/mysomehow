@@ -1,0 +1,21 @@
+<div class="page pb30">
+	<div class="container">
+		<div class="fix-breadcrumb">
+			<ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+				<li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+				<li class="active"><span>SomeHow Store</span></li>
+			</ol>
+		</div>
+		<div class="about-us">
+			<div class="title text-center">
+				<h1><?= $about->title ?></h1>
+			</div>
+			<div class="img-top">
+				<img src="<?php echo $this->url->get('img/14/about_top_imgc79a.jpg') ?>" alt="Giới thiệu" />
+			</div>
+			<div class="page-content">
+				<?= $about->content ?>
+			</div>
+		</div>
+	</div>
+</div>

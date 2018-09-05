@@ -1,0 +1,40 @@
+<div id="article" class="article-detail clearfix">
+   <div class="container">
+      <div class="fix-breadcrumb ">
+         <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+            <li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+            <li>
+               <a href="<?= $this->url->get('he-thong-cua-hang') ?>" target="_self">Hệ Thống Cửa Hàng</a> </li>
+            <li class="active"><span><?= $address_info['address'] ?></span></li>
+         </ol>
+      </div>
+      <div class="row">
+         <div class="col-sm-9 col-xs-12 articles clearfix">
+            <div class="main-title2 text-center mb30"><br>
+               <h1><b><?= $address_info['address'] ?></b></h1>
+            </div>
+            <div class="content-page">
+               <div class="article-content">
+                  <p class="date"></p>
+                  <div class="body-content">
+                     <p><iframe src="<?= $address_info['maps'] ?>" width="800" height="450" frameborder="0" style="border:0" allowfullscreen></iframe><span class="mce-shim"></span>
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-3 col-xs-12 sidebar">
+            <div id="layered_block_left" class="block">
+               <h4 class="title_block_sidebar">Địa chỉ cửa hàng</h4>
+               <div class="block_content_sidebar">
+                  <ul id="ul_layered_category_0">
+                     <?php foreach ($setting->info as $info) : ?>
+                        <li><i class="fa fa-long-arrow-right mrg-right-10"></i><a href="<?= $this->url->get('pages/he-thong-cua-hang/'.$info['id']) ?>"><?= $info['address'] ?></a></li>
+                     <?php endforeach; ?>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

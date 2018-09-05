@@ -1,0 +1,55 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><b>Cập nhật khách hàng</b></h4>
+          <hr>
+          <form class="form-sample" method="post">
+            <p class="card-description">
+              Thông tin khách hàng
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Họ Tên</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="display_name" value="<?= $users->display_name ?>" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Điện thoại</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="phone" value="<?= $users->phone ?>" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="email" disabled value="<?= $users->email ?>" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Địa chỉ</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="address" value="<?= $users->address ?>" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-success" style="color: white">Cập nhật</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content-wrapper ends -->

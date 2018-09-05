@@ -1,0 +1,55 @@
+<div id="collection">
+   <!-- Begin collection info -->
+   <!-- Content-->
+   <div class="fix-breadcrumb " >
+      <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+         <li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+         <li class="active"><span>Tìm kiếm</span></li>
+      </ol>
+   </div><br>
+   <div class="container">
+      <div class="row">
+         <div class="form-search">
+          <form action="" method="get" class="search-bar" role="search" onsubmit="">
+            <input type="search" name="search" value="" placeholder="Tìm kiếm..."  class="search-field tt-input" id="search-field" >
+            <button type="submit" class="search-bar--submit icon-fallback-text">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </form>
+         </div>
+      </div>
+      <div class="row">
+         <?php if (isset($products)) : ?>
+         <div class="clearfix filter-box">
+            <div class="product-filter pull-left">
+                <span>Có <?= $count ?> sản phẩm được tìm thấy:</span>
+            </div>
+         </div>
+         <div class="product-lists clearfix">
+            <?php foreach ($products as $product) : ?>
+            <div class="product-item">
+               <div class="img">
+                  <a href="<?= $this->url->get('products/'.$product->_id) ?>">
+                     <div class="img-show" style="background: url(<?= $this->url->get('img/product/'.$product->images[1]['link']) ?>) no-repeat;background-size: cover;background-position: center;" ></div>
+                  </a>
+               </div>
+               <div class="info">
+                  <h3><a href="<?= $this->url->get('products/'.$product->_id) ?>"><?= $product->title ?></a></h3>
+                  <div class="prices">
+                     <span><?= number_format($product->price['promo_price']) ?>₫</span>
+                  </div>
+               </div>
+            </div>
+            <?php endforeach; ?>
+         </div>
+         <?php else: ?>
+            <div class="clearfix filter-box">
+               <div class="product-filter pull-left">
+                   <span>Không tìm thấy sản phẩm nào!</span>
+               </div>
+            </div>
+         <?php endif; ?>
+      </div>
+   </div>
+   <!-- End no products -->
+</div>

@@ -1,0 +1,41 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+    	<?php $this->flashSession->output() ?>
+      <h4 class="card-title" style="float: left;">Quản lý bài viết</h4>
+      <a href="<?= $this->url->get('backend/blogs/addblogs') ?>" class="btn btn-success btn-fw mdi mdi-database-plus" style="float: right; color: white"> Tạo mới</a><br>
+      <p class="card-description"><hr></p>
+      <div class="table-outter-wrapper">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tiêu đề</th>
+              <th>Ngày tạo</th>
+              <th>Ngày update</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $count = 1; foreach ($blogs as $blog): ?>
+            <tr>
+              <td><?= $count ?></td>
+              <?php if ($blog->_id == 'gioi-thieu') : ?>
+                <td><a target="_blank" href="<?= $this->url->get(''.$blog->_id) ?>"><?= $blog->title ?></a></td>
+                <?php else: ?>
+                  <td><a target="_blank" href="<?= $this->url->get('blogs/'.$blog->_id) ?>"><?= $blog->title ?></a></td>
+              <?php endif; ?>
+              <td><?= Date("d/m/Y", $blog->created_at) ?></td>
+              <td><?= Date("d/m/Y", $blog->updated_at) ?></td>
+              <td style="font-size: 20px">
+                <a href="<?= $this->url->get('backend/blogs/updateblogs/'.$blog->_id) ?>" class="mdi mdi-pencil" title="Update"></a>
+                <a href="<?= $this->url->get('backend/blogs/deleteblogs/'.$blog->_id) ?>" class="mdi mdi-delete" title="Delete" onclick="return confirm('Bạn có chắc muốn xóa?')"></a>
+              </td>
+            </tr>
+          <?php $count += 1; endforeach;?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

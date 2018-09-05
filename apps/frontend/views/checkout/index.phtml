@@ -1,0 +1,260 @@
+<?php $total_price = $cart->getTotal() ?>
+<div class="content">
+   <div class="wrap">
+      <div class="sidebar">
+         <div class="sidebar-content">
+            <div class="order-summary order-summary-is-collapsed">
+               <h2 class="visually-hidden">Thông tin đơn hàng</h2>
+               <div class="order-summary-sections">
+                  <div class="order-summary-section order-summary-section-product-list" data-order-summary-section="line-items">
+                     <table class="product-table">
+                        <thead>
+                           <tr>
+                              <th scope="col"><span class="visually-hidden">Hình ảnh</span></th>
+                              <th scope="col"><span class="visually-hidden">Mô tả</span></th>
+                              <th scope="col"><span class="visually-hidden">Số lượng</span></th>
+                              <th scope="col"><span class="visually-hidden">Giá</span></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?php foreach ($cart->getContent() as $cart) : ?>
+                           <tr class="product" data-product-id="1016466982" data-variant-id="1031385033">
+                              <td class="product-image">
+                                 <div class="product-thumbnail">
+                                    <div class="product-thumbnail-wrapper">
+                                       <img class="product-thumbnail-image" alt="Áo Khoác Ni.ke Đen Phối" src="<?= $this->url->get('img/product/'.$cart['img']) ?>" />
+                                    </div>
+                                    <span class="product-thumbnail-quantity" aria-hidden="true"><?= $cart['qty'] ?></span>
+                                 </div>
+                              </td>
+                              <td class="product-description">
+                                 <span class="product-description-name order-summary-emphasis"><?= $cart['name'] ?></span>
+                                 <span class="product-description-variant order-summary-small-text">
+                                 <?= $cart['color'] . ' / ' . $cart['size']  ?>
+                                 </span>
+                              </td>
+                              <td class="product-quantity visually-hidden"><?= $cart['qty'] ?></td>
+                              <td class="product-price">
+                                 <span class="order-summary-emphasis"><?= number_format($cart['total']) ?>₫</span>
+                              </td>
+                           </tr>
+                           <?php endforeach; ?>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="order-summary-section order-summary-section-total-lines" data-order-summary-section="payment-lines">
+                     <table class="total-line-table">
+                        <thead>
+                           <tr>
+                              <th scope="col"><span class="visually-hidden">Mô tả</span></th>
+                              <th scope="col"><span class="visually-hidden">Giá</span></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr class="total-line total-line-subtotal">
+                              <td class="total-line-name">Tạm tính</td>
+                              <td class="total-line-price">
+                                 <span class="order-summary-emphasis" data-checkout-subtotal-price-target="<?php echo $total_price ?>">
+                                 <?php echo number_format($total_price) ?>₫
+                                 </span>
+                              </td>
+                           </tr>
+                           <!-- <tr class="total-line total-line-shipping">
+                              <td class="total-line-name">Phí vận chuyển</td>
+                              <td class="total-line-price">
+                                <span class="order-summary-emphasis" data-checkout-total-shipping-target="0">
+                                —
+                                </span>
+                              </td>
+                              </tr> -->
+                        </tbody>
+                        <tfoot class="total-line-table-footer">
+                           <tr class="total-line">
+                              <td class="total-line-name payment-due-label">
+                                 <span class="payment-due-label-total">Tổng cộng</span>
+                              </td>
+                              <td class="total-line-name payment-due">
+                                 <span class="payment-due-currency">VND</span>
+                                 <span class="payment-due-price" data-checkout-payment-due-target="<?php echo $total_price ?>">
+                                 <?php echo number_format($total_price) ?>₫
+                                 </span>
+                              </td>
+                           </tr>
+                        </tfoot>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="main">
+         <div class="main-content">
+            <div class="step">
+               <div class="step-sections steps-onepage" step="1">
+                  <div class="section">
+                     <div class="section-header">
+                        <h2 class="section-title">Thông tin giao hàng</h2>
+                     </div>
+                     <p class="section-content-text">
+                        Bạn đã có tài khoản?
+                        <a href="/account/login?urlredirect=%2Fcheckouts%2F7e4981d245d94b1ab0bfa41f6276dadd%3Fstep%3D1">Đăng nhập</a>
+                     </p>
+                     <br>
+                     <form id="" class="field" accept-charset="UTF-8" method="post">
+                        <div class="section-content section-customer-information ">
+                           <div class="fieldset">
+                              <!-- print validation -->
+                              <div class="field field-required <?= isset($errors['billing_name']) ? 'field-error' : null ?>">
+                                 <div class="field-input-wrapper">
+                                    <label class="field-label" for="billing_address_full_name">Họ và tên</label>
+                                    <input placeholder="Họ và tên" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="text" id="billing_address_full_name" name="billing_name" value="<?= @$params['billing_name'] ?>" />
+                                 </div>
+                                 <p class="field-message field-message-error"><?= isset($errors['billing_name']) ? $errors['billing_name'] : null ?></p>
+                              </div>
+                              <div class="field  field-two-thirds <?= isset($errors['billing_email']) ? 'field-error' : null ?>">
+                                 <div class="field-input-wrapper">
+                                    <label class="field-label" for="checkout_user_email">Email</label>
+                                    <input placeholder="Email" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="email" id="checkout_user_email" name="billing_email" value="<?= @$params['billing_email'] ?>" />
+                                 </div>
+                                 <p class="field-message field-message-error"><?= isset($errors['billing_email']) ? $errors['billing_email'] : null ?></p>
+                              </div>
+                              <div class="field field-required field-third  <?= isset($errors['billing_phone']) ? 'field-error' : null ?>">
+                                 <div class="field-input-wrapper">
+                                    <label class="field-label" for="billing_address_phone">Số điện thoại</label>
+                                    <input placeholder="Số điện thoại" autocapitalize="off" spellcheck="false" class="field-input" size="30" maxlength="11" type="tel" id="billing_address_phone" name="billing_phone" value="<?= @$params['billing_phone'] ?>" />
+                                 </div>
+                                 <p class="field-message field-message-error"><?= isset($errors['billing_phone']) ? $errors['billing_phone'] : null ?></p>
+                              </div>
+                              <div class="field field-required <?= isset($errors['billing_address']) ? 'field-error' : null ?>">
+                                 <div class="field-input-wrapper">
+                                    <label class="field-label" for="billing_address_address1">Địa chỉ</label>
+                                    <input placeholder="Địa chỉ" autocapitalize="off" spellcheck="false" class="field-input" size="30" type="text" id="billing_address_address1" name="billing_address" value="<?= @$params['billing_address'] ?>" />
+                                 </div>
+                                 <p class="field-message field-message-error"><?= isset($errors['billing_address']) ? $errors['billing_address'] : null ?></p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="section-content">
+                           <div class="fieldset">
+                              <input name="utf8" type="hidden" value="✓">
+                              <div class="content-box mt0">
+                                 <div class="radio-wrapper content-box-row">
+                                    <label class="radio-label">
+                                       <div class="radio-input">
+                                          <input type="radio" id="customer_pick_at_location_false" name="customer_pick_at_location" class="input-radio" value="false" checked>
+                                       </div>
+                                       <span class="radio-label-primary">Giao tận nơi</span>
+                                    </label>
+                                 </div>
+                                 <div id="form_update_location_customer_shipping" class="radio-wrapper content-box-row content-box-row-padding content-box-row-secondary " for="customer_pick_at_location_false">
+                                    <input name="utf8" type="hidden" value="✓">
+                                    <div class="field field-show-floating-label  field-half <?= isset($errors['customer_shipping_province']) ? 'field-error' : null ?>">
+                                       <div class="field-input-wrapper field-input-wrapper-select">
+                                          <label class="field-label" for="customer_shipping_province"> Tỉnh / thành  </label>
+                                          <select class="field-input" id="customer_shipping_province" name="customer_shipping_province">
+                                             <option data-code="" value="" selected>  Chọn tỉnh / thành </option>
+                                             <?php foreach ($provinces as $province) : ?>
+                                             <option data-code="<?= $province->_id ?>" value="<?= $province->ref_id ?>" ><?= $province->full ?></option>
+                                             <?php endforeach; ?>
+                                          </select>
+                                       </div>
+                                       <p class="field-message field-message-error"><?= isset($errors['customer_shipping_province']) ? $errors['customer_shipping_province'] : null ?></p>
+                                    </div>
+                                    <div class="field field-show-floating-label  field-half ">
+                                       <div class="field-input-wrapper field-input-wrapper-select">
+                                          <label class="field-label" for="customer_shipping_district">Quận / huyện</label>
+                                          <select class="field-input" id="customer_shipping_district" name="customer_shipping_district">
+                                             <option data-code="" value="" selected>Chọn quận / huyện</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="change_pick_location_or_shipping">
+                           <div class="inventory_location">
+                           </div>
+                           <div id="section-shipping-rate">
+                              <div class="section-header">
+                                 <h2 class="section-title">Phương thức vận chuyển</h2>
+                              </div>
+                              <div class="section-content">
+                                 <!-- <div class="content-box  blank-slate" id="blank-slate">
+                                    <i class="blank-slate-icon icon icon-closed-box "></i>
+                                    <p>Vui lòng chọn tỉnh / thành để có danh sách phương thức vận chuyển.</p>
+                                    </div> -->
+                                 <div class="content-box" id="shipping_rate" style="">
+                                    <div class="content-box-row">
+                                       <div class="radio-wrapper">
+                                          <label class="radio-label" for="shipping_rate_id">
+                                             <div class="radio-input">
+                                                <input id="shipping_rate_id" class="input-radio" type="radio" name="shipping_rate_id" value="" checked />
+                                             </div>
+                                             <span class="radio-label-primary" id="all-city">Phí vận chuyển sẽ được tính riêng sau khi hoàn tất đơn hàng</span>
+                                             <!-- <span class="radio-accessory content-box-emphasis"><span id="price-shipping"></span>₫
+                                                </span> -->
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="section-payment-method" class="section">
+                              <div class="section-header">
+                                 <h2 class="section-title">Phương thức thanh toán</h2>
+                              </div>
+                              <div class="section-content">
+                                 <div class="content-box">
+                                    <div class="radio-wrapper content-box-row">
+                                       <label class="radio-label" for="payment_method_id_54463">
+                                          <div class="radio-input">
+                                             <input id="payment_method_id_54463" class="input-radio" name="payment_method_id" type="radio" value="" checked />
+                                          </div>
+                                          <span class="radio-label-primary">Thanh toán khi giao hàng (COD)</span>
+                                       </label>
+                                    </div>
+                                    <div class="radio-wrapper content-box-row content-box-row-secondary " for="payment_method_id_54463">
+                                       <div class="blank-slate">
+                                          - Miễn phí ship đối với đơn hàng nội thành HCM.
+                                          - Miễn phí ship ở các tỉnh với đơn hàng trên 500.000 đ.
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+               </div>
+               <div class="step-footer">
+               <input name="utf8" type="hidden" value="✓">
+               <button type="submit" class="step-footer-continue-btn btn">
+               <span class="btn-content">Hoàn tất đơn hàng</span>
+               <i class="btn-spinner icon icon-button-spinner"></i>
+               </button>
+               </form>
+               <a class="step-footer-previous-link" href="<?= $this->url->get('gio-hang') ?>">
+               <svg class="previous-link-icon icon-chevron icon" xmlns="http://www.w3.org/2000/svg" width="6.7" height="11.3" viewBox="0 0 6.7 11.3">
+               <path d="M6.7 1.1l-1-1.1-4.6 4.6-1.1 1.1 1.1 1 4.6 4.6 1-1-4.6-4.6z"></path>
+               </svg>
+               Giỏ hàng
+               </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+   $(document).ready(function () {
+     $('#customer_shipping_province').change(function () {
+       path = $('option:selected', this).attr('data-code');
+       $.ajax({
+         url: '<?= $this->url->get('checkout/district/') ?>' + path,
+         success: function (data) {
+           $('#customer_shipping_district').html(data); //customer_shipping_district
+         },
+       });
+     });
+   })
+</script>

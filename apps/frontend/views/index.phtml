@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <link rel="shortcut icon" href="<?php echo $this->url->get('img/14/'.$setting->web_thumbnail) ?>" type="image/png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title><?= $setting->title ?> - SomeHow Store</title>
+    <meta name="description" content="Chuyên quần áo nam phong cách Tây Âu" />
+    <meta name="keywords" content="<?= $setting->keywords ?>" />
+
+    <link rel="stylesheet" href="<?php echo $this->url->get('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo $this->url->get('css/theme.scss.css') ?>">
+    <link rel="stylesheet" href="<?php echo $this->url->get('css/jquery-ui.css') ?>">
+    <link rel="stylesheet" href="<?= $this->url->get('ad/vendors/iconfonts/mdi/css/materialdesignicons.min.css') ?>">
+    <link href='<?php echo $this->url->get("css/style.css") ?>' rel='stylesheet' type='text/css' media='all'  />
+    <link href='<?php echo $this->url->get("css/styles.css") ?>' rel='stylesheet' type='text/css' media='all' />
+    <script src="<?php echo $this->url->get('js/jquery.min.js') ?>"></script>
+    <script src="<?php echo $this->url->get('js/jquery-ui.js') ?>"></script>
+    <script src="<?php echo $this->url->get('js/bootstrap.min.js') ?>"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#search-field").autocomplete({
+                source: "<?php $this->url->get('') ?>",
+            });
+        })
+    </script>
+    <?php $this->assets->outputCss(); ?>
+    <?php $this->assets->outputJs(); ?>
+</head>
+<body>
+    <div canvas="container">
+        <!-- layout header -->
+        <?php $this->partial("shared/header"); ?>
+        
+        <?php echo $this->getContent(); ?>
+
+        <!-- layout container -->
+        <?php //$this->partial("shared/container"); ?>
+        
+        <!-- layout footer -->
+        <?php $this->partial("shared/footer"); ?> 
+    <a href="#" class="scrollToTop">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    </div>   
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script>
+        jQuery(document).ready(function(){
+            jQuery(".new-control").click(function(){
+                jQuery(this).toggleClass("control-span");
+            });
+        });
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="<?php echo $this->url->get('js/option_selection.min.js') ?>"></script>
+    <script src="<?php echo $this->url->get('js/api.jquery.min.js') ?>"></script>
+    <script src='<?php echo $this->url->get("js/plugin.min.js") ?>' type='text/javascript'></script>
+    <link href='<?php echo $this->url->get("css/plugin.min.css") ?>' rel='stylesheet' type='text/css'  media='all'  />
+    <script src='<?php echo $this->url->get("js/script.js") ?>' type='text/javascript'></script>
+</div> 
+</body>
+</html>

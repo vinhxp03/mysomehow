@@ -1,0 +1,117 @@
+<?php $ControllerName = $this->router->getControllerName() ?>
+<header>
+    <div class="header-top clearfix hidden-xs hidden-sm">
+        <div class="container">
+            <h1 class="logo">
+                <a href="<?php echo $this->url->get('') ?>" class="brand">
+                    <img src="<?php echo $this->url->get('img/14/'.$setting->web_logo) ?>" alt="SomeHow Store" />
+                </a>
+            </h1>
+            <div class="user-cart hidden-xs hidden-sm">
+                <?php 
+                if ($this->session->has('userName')) {
+                    echo "<a href=".$this->url->get('account').">Chào ".$this->session->get("userName")."</a>";
+                }
+                else{
+                    echo "<a href=".$this->url->get('dang-nhap').">ĐĂNG NHẬP</a>";
+                }?>
+                <a href="<?php echo $this->url->get('gio-hang') ?>" class="cart-top"><i class="mdi  mdi-cart-outline"></i>
+                     GIỎ HÀNG
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom clearfix hidden-xs hidden-sm">
+        <div class="container">
+            <div class="menu-center">
+                <ul class="main-menu clearfix">
+                    <li>
+                        <a class="<?= $ControllerName == 'index' ? 'active' : null ?> " href="<?php echo $this->url->get('') ?>">Trang chủ</a>
+                    </li>
+                    <li class="" >
+                        <a class="<?= $ControllerName == 'products' ? 'active' : null ?> "href="<?php echo $this->url->get('collections') ?>">Sản phẩm</a>
+                        <div class="sub">
+                            <div class="sub-container">
+                                <ul class="menu-item bg">
+                                    <li><a href="<?= $this->url->get('collections/san-pham-moi') ?>">SẢN PHẨM MỚI</a></li>
+                                    <li><a href="<?= $this->url->get('collections/san-pham-ban-chay') ?>">SẢN PHẨM BÁN CHẠY</a></li>
+                                    <li><a href="<?= $this->url->get('collections/all-item') ?>">ALL ITEM</a></li>
+                                    <li><a href="<?= $this->url->get('he-thong-cua-hang') ?>">HỆ THỐNG CỬA HÀNG</a></li>
+                                </ul>
+                                <?php foreach ($categories as $category) : ?>
+                                    <?php if (is_null($category->parent_id)) { ?>
+                                        <ul class="menu-item">
+                                        <?php foreach ($categories as $child) {
+                                            if ($child->parent_id == $category->_id) { ?>
+                                                <li><a href="<?= $this->url->get('collections/'.$child->_id) ?>"><?php echo $child->title ?></a></li>
+                                            <?php }
+                                        } ?>
+                                        </ul>
+                                    <?php } ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="<?= $ControllerName == 'about' ? 'active' : null ?> " href="<?php echo $this->url->get(''.$blog_about->_id) ?>">Giới thiệu</a>
+                    </li>
+                    <li class=" has-child" >
+                        <a class="<?= $ControllerName == 'introduce' ? 'active' : null ?> " href="<?php echo $this->url->get('blogs/huong-dan-mua-hang-online') ?>">Bài viết</a>
+                        <ul class="child">
+                            <?php foreach ($bloghead as $value) : ?>
+                                <?php if ($value->_id != 'gioi-thieu') : ?>
+                                    <li><a href="<?php echo $this->url->get('blogs/'.$value->_id) ?>"><?php echo  $value->title ?></a></li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <li><a href="<?php echo $this->url->get('huong-dan-lua-chon-size') ?>">Hướng Dẫn Lựa Chọn Size</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="" href="<?php echo $this->url->get('search') ?>">Tìm kiếm</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section class="header-new visible-xs visible-sm">
+        <div class="container clearfix ">
+            <div class="header-container clearfix">
+                <div class="clearfix">
+                    <div class="js-toggle-left-slidebar js-menu-mobile">
+                        <div class="trigger-menu">
+                            <span class="three-bars-icon"></span><span class="text">menu</span>
+                        </div>
+                    </div>
+                    <div class="logo">
+                        <a href="index.html">
+                            <img alt="SomeHow Store" src="<?php echo $this->url->get('img/14/logo.svg') ?>">
+                        </a>
+                    </div>
+                    <div class="login-icon">
+                        <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="menu-top clearfix">
+                        <div class="search">
+                            <span class="ic-search" onclick="Search();"></span>
+                        </div>
+                    </div>
+                    <div class="search-on-mobile">
+                        <div class="inside">
+                            <form action="#" method="get">
+                                <input type="hidden" value="product" name="type"/>
+                                <input value="" name="q" id="input-search-mobile" type="text" placeholder="Tìm kiếm...">
+                                <a href="#!" class="close-search-mobile">Đóng search</a>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="cart-top">
+                        <a href="cart.html">
+                            <img src="<?php echo $this->url->get('img/14/cart.svg') ?>" alt="cart mobile" width="16"/>
+                            <span class="number-count">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>

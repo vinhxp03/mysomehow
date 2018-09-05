@@ -1,0 +1,99 @@
+<?php  ?>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <?php $this->flashSession->output() ?>
+      <h4 class="card-title" style="float: left;"><b>Quản lý đơn hàng</b></h4><br>
+      <p class="card-description"><hr></p>
+      <div class="table-outter-wrapper">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Khách hàng</th>
+              <th>Điện thoại</th>
+              <th>Trị giá</th>
+              <th>Ngày đặt</th>
+              <th>Trạng thái</th>
+              <th>Chi tiết</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $count = 5 * $pages->current - 4; foreach ($orders as $value): ?>
+            <?php $status = $value->status ?>
+            <tr>
+              <td><?= $count ?></td>
+              <td><?= $value->customer_name ?></td>
+              <td><?= $value->customer_phone ?></td>
+              <td><?= number_format($value->total_price) ?> <u>&#273</u></div></td>
+              <td><?= Date("d/m/Y", $value->created_at) ?></td>
+              <?php switch ($status) {
+                case 'Mới':
+                  echo '<td><label class="badge badge-warning">'.$status.'</label></td>';
+                  break;
+                case 'Đã xác nhận':
+                  echo '<td><label class="badge badge-danger">'.$status.'</label></td>';
+                  break;
+                case 'Đang giao':
+                  echo '<td><label class="badge badge-info">'.$status.'</label></td>';
+                  break;
+                case 'Hoàn thành':
+                  echo '<td><label class="badge badge-success">'.$status.'</label></td>';
+                  break;
+                case 'Đã hủy':
+                  echo '<td><label class="badge badge-dark">'.$status.'</label></td>';
+                  break;
+                default:
+                  break;
+              } ?>
+              <td style="font-size: 20px">
+                <a href="<?= $this->url->get('backend/orders/details/'.$value->_id) ?>" class="mdi mdi-details" title="Chi tiết"></a>
+                <a href="<?= $this->url->get('backend/orders/destroy/'.$value->_id) ?>" class="mdi mdi-delete" title="Destroy" onclick="return confirm('Bạn chắc muốn hủy đơn hàng này?')"></a>
+              </td>
+            </tr>
+          <?php $count += 1; endforeach;?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <?php $current = $pages->current ?>
+      <ul class="pagination justify-content-center">
+        <li class="page-item <?= $current==1 ? 'disabled' : '' ?>">
+          <a class="page-link" disable href="<?= $this->url->get('backend/orders/?page='.$pages->before) ?>"><</a>
+        </li>
+        <li class="page-item <?= $current==1 ? 'disabled' : '' ?>">
+          <a class="page-link" href="<?= $this->url->get('backend/orders') ?>"><?= $pages->first ?></a>
+        </li>
+        <?php if ($current > $pages->first+3) : ?>
+          <li class="page-item disabled">
+            <a class="page-link" href="">...</a>
+          </li>
+        <?php endif; ?>
+        <?php $total_pages = $pages->total_pages; 
+        // limit show pagination
+        for ($i=max(1,$current-2); $i <= min($current+2,$total_pages); $i++) : ?>
+          <?php if ($i==$pages->first||$i==$pages->last) {
+            // if current = first or current = last >> pass
+            continue;
+          }else { ?>
+          <li class="page-item <?= $current==$i ? 'disabled':'' ?>">
+            <a class="page-link" href="<?= $this->url->get('backend/orders/?page='.$i) ?>"><?= $i ?></a>
+          </li>
+        <?php }; ?>
+        <?php endfor; ?>
+        <?php if ($current < $pages->last-3) : ?>
+          <li class="page-item disabled">
+            <a class="page-link" href="">...</a>
+          </li>
+        <?php endif; ?>
+        <li class="page-item <?= $current==$total_pages ? 'disabled' : '' ?>">
+          <a class="page-link" href="<?= $this->url->get('backend/orders/?page='.$pages->last) ?>"><?= $pages->last ?></a>
+        </li>
+        <li class="page-item <?= $current==$total_pages ? 'disabled' : '' ?>">
+          <a class="page-link" href="<?= $this->url->get('backend/orders/?page='.$pages->next) ?>">></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

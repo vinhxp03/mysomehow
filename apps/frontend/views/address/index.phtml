@@ -1,0 +1,37 @@
+<div class="page pb30">
+	<div class="fix-breadcrumb " >
+	<ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+		<li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+		<li class="active"><span>Hệ thống cửa hàng</span></li>
+	</ol>
+	</div>
+		<div class="container">
+			<div class="stores row">
+				<div class="main-title2 text-center">
+					<h1>Hệ thống cửa hàng</h1>
+				</div>
+				<div class="stores-list clearfix">
+					<?php $count = 1; foreach ($setting->info as $info) : ?>
+					<div class="stores-item">
+						<a href="<?= $this->url->get('pages/he-thong-cua-hang/'.$info['id']) ?>">
+							<img src="<?php echo $this->url->get('img/14/'.$info['images']) ?>"/>
+							<div class="stores-info">
+								<p class="title">Store <?= $count ?></p>
+								<p class="address"><?= $info['address'] ?></p>
+								<p class="hotline"><?= $info['phone'] ?></p>
+							</div>
+						</a>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="stores-description">
+		<div class="container">
+			<div class="content">
+				<p><strong>SOMEHOW STORE: A FASHION INDUSTRY LEGEND</strong></p><p><span style="font-size: 12pt;" data-mce-style="font-size: 12pt;"><em>Bằng cách nào đó</em><span>&nbsp;</span>--- Chúng tôi luôn cố gắng mang những sản phẩm thời trang dành cho nam với tính thẩm mĩ bắt kịp<span>&nbsp;</span><strong>xu hướng nhanh nhất, chất lượng hàng hóa tốt nhất</strong>.&nbsp;</span><span style="font-size: 12pt;" data-mce-style="font-size: 12pt;">Chúng tôi luôn đảm bảo từng sản phẩm được trưng bày và bán ở SomeHow Store đều đã được anh em chúng tôi trải nghiệm, và kiểm tra rất kĩ về chất lượng cũng như mẫu mã.</span><span class="text_exposed_show"><br><span style="font-size: 12pt;" data-mce-style="font-size: 12pt;">Cung cấp những thương hiệu chính hãng dành cho Nam:<span>&nbsp;</span><strong>INF, Bensteven, R.A.W, Icoin&amp;Denim</strong>,.....</span><br></span></p>
+			</div>
+		</div>
+	</div>
+</div>

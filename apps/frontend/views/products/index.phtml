@@ -1,0 +1,117 @@
+<div id="collection">
+   <!-- Begin collection info -->
+   <!-- Content-->
+   <div class="fix-breadcrumb " >
+      <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+         <li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+         <li class="active"><span>Tất cả sản phẩm</span></li>
+      </ol>
+   </div><br>
+   <div class="container">
+      <div class="row">
+         <?php if (isset($params)) : ?>
+            <?php switch ($params) {
+               case 'san-pham-moi':
+                  $this->partial('shared/products/new_products');
+                  break;
+               case 'san-pham-ban-chay':
+                  $this->partial('shared/products/bestseller_products');
+                  break;
+               default:
+                  $this->partial('shared/products/products');
+                  break;
+            } ?>
+         <?php endif; ?>
+         <div class="clearfix filter-box">
+            <div class="browse-tags pull-left">
+               <span class="hidden">Sắp xếp theo:</span>
+               <form action="" id="form_sort" method="get">
+               <span  class="custom-dropdown custom-dropdown--white">
+                  <select class="sort-by custom-dropdown__select custom-dropdown__select--white" name="sort_by">
+                     <option value="created-descending" <?= $sort_by=='created-descending'?'selected':'' ?>>
+                     Mới nhất</option>
+                     <option value="best-selling" <?= $sort_by=='best-selling'?'selected':'' ?>>Bán chạy nhất</option>
+                     <option value="price-ascending" <?= $sort_by=='price-ascending'?'selected':'' ?>>Giá: Tăng dần</option>
+                     <option value="price-descending" <?= $sort_by=='price-descending'?'selected':'' ?>>Giá: Giảm dần</option>
+                     <option value="title-ascending" <?= $sort_by=='title-ascending'?'selected':'' ?>>Tên: A-Z</option>
+                     <option value="title-descending" <?= $sort_by=='title-descending'?'selected':'' ?>>Tên: Z-A</option>
+                  </select>
+               </span>
+               </form>
+            </div>
+            <div class="pull-right showing">
+               Hiển thị <?= min($pages->current_items + 8,$pages->total_items).'/'.$pages->total_items ?> Sản phẩm
+            </div>
+         </div>
+         <div class="product-lists clearfix">
+            <?php foreach ($products as $product) : ?>
+            <div class="product-item">
+               <div class="img">
+                  <a href="<?= $this->url->get('products/'.$product->_id) ?>">
+                     <div class="img-show" style="background: url(<?= $this->url->get('img/product/'.$product->images[1]['link']) ?>) no-repeat;background-size: cover;background-position: center;" ></div>
+                  </a>
+               </div>
+               <div class="info">
+                  <h3><a href="<?= $this->url->get('products/'.$product->_id) ?>"><?= $product->title ?></a></h3>
+                  <div class="prices">
+                     <span><?= number_format($product->price['promo_price']) ?>₫</span>
+                  </div>
+               </div>
+            </div>
+            <?php endforeach; ?>
+         </div>
+         <div class="paginate text-center">
+            <?php $current = $pages->current ?>
+            <?php $total_pages = $pages->total_pages; ?>
+            <div id="pagination">
+               <!-- -------------------------------------------------- -->
+               <?php if ($current==1) :?>
+                  <span class="page-node current">1</span>
+               <?php else: ?>
+                  <a class="page-node" href="<?= $this->url->get('collections?page='.$pages->before) ?>"><span><i class="fa fa-angle-left"></i></span></a>
+                  <a class="page-node" href="<?= $this->url->get('collections?page='.$pages->first) ?>"><?= $pages->first?></a>
+               <?php endif; ?>
+
+               <!-- -----------------------  -->
+               <?php if ($current > $pages->first+3) : ?>
+                  <span class="page-node ">&hellip;</span>
+               <?php endif; ?>
+
+               <!-- // limit show pagination -->
+               <?php for ($i=max(1,$current-2); $i <= min($current+2,$total_pages); $i++) : ?>
+                  <?php if ($i==$pages->first||$i==$pages->last) {
+                    // if current = first or current = last >> pass
+                    continue;
+                  }elseif ($current==$i) { ?>
+                     <span class="page-node current"><?= $i ?></span>
+                  <?php }else{ ?>
+                     <a class="page-node" href="<?= $this->url->get('collections?page='.$i) ?>"><?= $i ?></a>
+                 <?php } ?>
+               <?php endfor; ?>
+
+               <!-- -----------------------  -->
+               <?php if ($current < $pages->last-3) : ?>
+                  <span class="page-node ">&hellip;</span>
+               <?php endif; ?>
+
+                <!-- -------------------------------------------------- -->
+               <?php if ($current==$pages->last) :?>
+                  <span class="page-node current"><?= $pages->last?></span>
+               <?php else: ?>
+                  <a class="page-node" href="<?= $this->url->get('collections?page='.$pages->last) ?>"><?= $pages->last?></a>
+                  <a class="page-node" href="<?= $this->url->get('collections?page='.$pages->next) ?>"><span><i class="fa fa-angle-right"></i></span></a>
+               <?php endif; ?>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- End no products -->
+</div>
+<script type="text/javascript">
+   $(document).ready(function () {
+      $('.sort-by').change(function () {
+         $('#form_sort').submit();
+         
+      })
+   })
+</script>

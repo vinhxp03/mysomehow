@@ -1,0 +1,197 @@
+</script>
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="float: left;"><b>Cập nhật sản phẩm</b></h4>
+          <a href="<?= $this->url->get('backend/products') ?>" class="btn btn-success btn-fw mdi mdi-view-list" style="float: right; color: white"> Danh sách</a><br>
+          <hr>
+          <form class="form-sample" method="post" enctype="multipart/form-data">
+            <p class="card-description">
+              Thông tin sản phẩm
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Tên sản phẩm</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="title" value="<?= $product->title ?>" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Danh mục</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="category">
+                      <?php foreach ($categories as $category) : ?>
+
+                        <!-- kiểm tra nếu là danh mục cha -->
+                        <?php if (is_null($category->parent_id)) :?>
+                          <option value="<?= $category->_id ?>" disabled style="font-weight: bold"><?= $category->title ?></option>
+                        <?php endif; ?>
+
+                        <!-- duyệt danh mục con -->
+                        <?php foreach ($categories as $key) : ?>
+                          <?php if ($key->parent_id == $category->_id) :?>
+                            <option value="<?= $key->_id ?>" <?= $product->category==$key->_id ? 'selected':null ?>>
+                              <?= $key->title ?></option>
+                          <?php endif; ?>
+                        <?php endforeach; ?>
+
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Giá nhập</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="in_price" value="<?= $product->price['in_price'] ?>" />
+                    <?php if (isset($errors['in_price'])): ?>
+                      <div class="errors"><?= $errors['in_price'] ?></div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Giá bán</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="sale_price" value="<?= $product->price['sale_price'] ?>" />
+                    <?php if (isset($errors['sale_price'])): ?>
+                      <div class="errors"><?= $errors['sale_price'] ?></div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Giá khuyến mãi</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="promo_price" value="<?= $product->price['promo_price'] ?>" />
+                    <?php if (isset($errors['promo_price'])): ?>
+                      <div class="errors"><?= $errors['promo_price'] ?></div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Số lượng</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="total" value="<?= $product->total ?>" />
+                    <?php if (isset($errors['total'])): ?>
+                      <div class="errors"><?= $errors['total'] ?></div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- row images -->
+            <div class="row" id="boximages">
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Hình ảnh</label>
+                  <!-- print images -->
+                  <?php $images = $product->images ?>
+                  <?php foreach ($images as $image) : ?>
+                  <div class="col-sm-2">
+                    <img src="<?= $this->url->get('img/product/'.$image['link']) ?>" alt="" style="width: 70px; margin-bottom: 10px">
+                    <!-- <div onclick="delImage()" class="btn btn-icons btn-rounded btn-outline-secondary" id="<?= $link ?>"><i class="mdi mdi-delete"></i></div> -->
+                  </div>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+            </div> 
+            <div class="row">
+              <div class="col-md-6" id="addImages">
+                <div class="col-sm-3">
+                  <button type="button" class="btn btn-info btn-fw">
+                    <i class="mdi mdi-star-outline"></i>Thêm ảnh</button>
+                </div>
+              </div>
+            </div>  
+            <hr>
+            <!-- row checkbox size -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Size</label>
+                  <div class="col-sm-9">
+                    <!-- set size -->
+                    <input type="text" class="form-control" required name="size" value="<?php 
+                      $sizes = $product->details['size'];
+                      foreach ($sizes as $size){
+                        echo $size.',';
+                      }
+                     ?>" />
+                    <?php if (isset($errors['size'])): ?>
+                      <div class="errors"><?= $errors['size'] ?></div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-12 col-form-label" style="color: red">Vui lòng nhập size ngăn cách nhau bởi dấu "," (vd: M,L,XL)</label>
+                </div>
+              </div>
+            </div>
+            <hr>   
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Mô tả</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" name="description"><?= $product->details['description'] ?></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="color: white">
+              <i class="mdi mdi-upload"></i>Cập nhật sản phẩm</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content-wrapper ends -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#addImages').click(function () {
+      $('#boximages').append('<div class="col-md-12" id="image">\
+                <div class="row">\
+                  <div class="col-md-5">\
+                    <div class="form-group row">\
+                      <label class="col-sm-3 col-form-label">Hình ảnh</label>\
+                      <div class="col-sm-9">\
+                        <input type="file" class="form-control" id="images" name="images[]" required placeholder="">\
+                      </div>\
+                    </div>\
+                  </div>\
+                  <div class="col-md-5">\
+                    <div class="form-group row">\
+                      <label class="col-sm-3 col-form-label">Màu sắc</label>\
+                      <div class="col-sm-9">\
+                        <input type="text" class="form-control" id="color" name="color[]" \
+                        placeholder="">\
+                      </div>\
+                    </div>\
+                  </div>\
+                  <div class="col-md-2">\
+                    <div onclick="$(this).closest(\'#image\').remove()" class="btn btn-icons btn-rounded btn-outline-secondary"><i class="mdi mdi-delete"></i></div>  \
+                  </div>\
+                </div>\
+              </div>');
+    });
+  });
+</script>

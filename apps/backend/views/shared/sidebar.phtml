@@ -1,0 +1,142 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="<?= $this->url->get('ad/images/faces/face1.jpg') ?>" alt="profile image">
+          </div>
+          <div class="text-wrapper"><p></p>
+            <div>
+              <small class="designation text-muted"><?php if ($this->session->has('admin')) {
+                echo $this->session->get('admin');
+              } ?></small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+       <!--  <button class="btn btn-success btn-block">New Project
+          <i class="mdi mdi-plus"></i>
+        </button> -->
+      </div>
+    </li>
+    <li class="nav-item <?= $controller == 'index' ? 'active' : null ?>">
+      <a class="nav-link" href="<?php echo $this->url->get('backend') ?>">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Quản lý đơn hàng -->
+    <li class="nav-item <?= $controller == 'orders' ? 'active' : null ?>">
+      <a class="nav-link" data-toggle="collapse" href="#bill" aria-expanded="false" aria-controls="bill">
+        <i class="menu-icon mdi mdi-clipboard-text"></i>
+        <span class="menu-title">Quản lý đơn hàng</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="bill">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/orders') ?>"><i class="mdi mdi-menu-right"></i>Đơn hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/orders/reports') ?>"><i class="mdi mdi-menu-right"></i>Thống kê</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <!-- Quản lý sản phẩm -->
+    <li class="nav-item <?= $controller == 'products' || 
+                          $controller == 'categories' ? 'active' : null ?>">
+      <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
+        <i class="menu-icon mdi mdi-cup-water"></i>
+        <span class="menu-title">Quản lý sản phẩm</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="product">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/products') ?>"><i class="mdi mdi-menu-right"></i>Sản phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/products/new') ?>"><i class="mdi mdi-menu-right"></i>Sản phẩm mới</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/products/bestsellers') ?>"><i class="mdi mdi-menu-right"></i>Sản phẩm bán chạy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/categories') ?>"><i class="mdi mdi-menu-right"></i>Danh mục sản phẩm</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <!-- Quản lý khách hàng -->
+    <li class="nav-item <?= $controller == 'users' ? 'active' : null ?>">
+      <a class="nav-link" data-toggle="collapse" href="#customer" aria-expanded="false" aria-controls="customer">
+        <i class="menu-icon mdi mdi-account-multiple-outline"></i>
+        <span class="menu-title">Quản lý khách hàng</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="customer">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo $this->url->get('backend/users') ?>"><i class="mdi mdi-menu-right"></i>Khách hàng</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <!-- Quản lý bài viết -->
+    <li class="nav-item ">
+      <a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
+        <i class="menu-icon mdi mdi-newspaper"></i>
+        <span class="menu-title">Quản lý bài viết</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="news">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/blogs') ?>"><i class="mdi mdi-menu-right"></i>Bài viết</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $this->url->get('backend/blogs/size') ?>"><i class="mdi mdi-menu-right"></i>Size</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <!-- Quản lý slide -->
+    <li class="nav-item ">
+      <a class="nav-link" data-toggle="collapse" href="#slide" aria-expanded="false" aria-controls="slide">
+        <i class="menu-icon mdi mdi-newspaper"></i>
+        <span class="menu-title">Quản lý Slide</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="slide">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo $this->url->get('backend/slides') ?>"><i class="mdi mdi-menu-right"></i>Slide</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    
+    <!-- Quản lý admin -->
+    <li class="nav-item <?= $controller == 'admin' ? 'active' : null ?>">
+      <a class="nav-link" href="<?php echo $this->url->get('backend/admin') ?>">
+        <i class="menu-icon mdi mdi-account-circle"></i>
+        <span class="menu-title">Admin</span>
+      </a>
+    </li>
+
+    <!-- Setting -->
+    <li class="nav-item <?= $controller == 'setting' ? 'active' : null ?>">
+      <a class="nav-link" href="<?php echo $this->url->get('backend/setting') ?>">
+        <i class="menu-icon mdi mdi-settings"></i>
+        <span class="menu-title">Setting</span>
+      </a>
+    </li>
+  </ul>
+</nav>

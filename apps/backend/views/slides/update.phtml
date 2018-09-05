@@ -1,0 +1,61 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="float: left;"><b>Cập nhật slide</b></h4>
+          <a href="<?= $this->url->get('backend/slides') ?>" class="btn btn-success btn-fw mdi mdi-view-list" style="float: right; color: white"> Danh sách</a><br>
+          <hr>
+          <form class="form-sample" method="post" enctype="multipart/form-data">
+            <p class="card-description">
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Title</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="title" value="<?= $slide->title ?>" />
+                  </div>
+                </div>
+              </div> 
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="description" value="<?= $slide->description ?>" />
+                  </div>
+                </div>
+              </div>   
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Links</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="links" class="form-control" name="<?= $slide->links ?>" value="" />
+                  </div>
+                </div>
+              </div> 
+            </div>         
+            <!-- row images -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Hình ảnh</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="images" name="images" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label"><?= Phalcon\Tag::image(['img/slides/'.$slide->images, 'width'=>150]) ?></label>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="color: white">
+              <i class="mdi mdi-upload"></i>Cập nhật</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

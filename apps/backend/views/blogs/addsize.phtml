@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="float: left;"><b>Thêm mới blogs size</b></h4>
+          <a href="<?= $this->url->get('backend/blogs/size') ?>" class="btn btn-success btn-fw mdi mdi-view-list" style="float: right; color: white"> Danh sách</a><br>
+          <hr>
+          <form class="form-sample" method="post" enctype="multipart/form-data">
+            <p class="card-description">
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Tên sản phẩm</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="title" value="" />
+                  </div>
+                </div>
+              </div>   
+            </div>         
+            <!-- row images -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Hình ảnh</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="images" name="images" required placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Chi tiết</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="images" name="images_details" required placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="color: white">
+              <i class="mdi mdi-upload"></i>Thêm mới</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

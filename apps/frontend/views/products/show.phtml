@@ -1,0 +1,397 @@
+<script src='<?= $this->url->get('js/jquery.mthumbnailscroller.js?v=72') ?>' type='text/javascript'></script>
+<div id="product">
+  <div class="fix-breadcrumb new-bg" >
+    <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+      <li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+      <li class="active"><span> <?= $product->title ?></span></li>
+    </ol>
+  </div>
+  <div class="container">
+    <div class="row clearfix">
+      <div class="product-left">
+        <div id="surround">
+
+          <!-- interface thumbnail -->
+          <img class="product-image-feature" data-zoom-image="<?= $this->url->get('img/product/'.$product->images[1]['link']) ?>" src="<?= $this->url->get('img/product/'.$product->images[1]['link']) ?>" alt="Jogger Das Suông">
+          <div id="sliderproduct-pc" class="hidden-xs hidden-sm" style="display:none;">
+            <ul class="slides">
+              <?php $images = $product->images ?>
+              <?php foreach ($images as $image) : ?>
+              <li class="product-thumb">
+                <a href="javascript:" data-image="<?= $this->url->get('img/product/'.$image['link']) ?>" data-zoom-image="<?= $this->url->get('img/product/'.$image['link']) ?>">
+                <img alt="Jogger Das Suông" data-image="<?= $this->url->get('img/product/'.$image['link']) ?>" src="<?= $this->url->get('img/product/thumbs/'.$image['link']) ?>" >
+                </a>
+              </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
+        <!-- end interface thumbnail -->
+      </div>
+      <div class="product-right">
+        <h3><?= $product->title ?></h3>
+        <div class="product-price" id="price-preview2">
+          <span><?= number_format($product->price['promo_price']) ?>₫</span>
+        </div>
+        <form id="add-item-form" action="" method="post" class="variants clearfix">
+          <div class="select clearfix" style="display:none;">
+            <div class="selector-wrapper">
+              <label for="product-select-option-0">Màu sắc</label>
+              <span class="custom-dropdown custom-dropdown--white">
+              <select class="single-option-selector custom-dropdown__select custom-dropdown__select--white" data-option="option1" id="product-select-option-0" name="color">
+                <?php foreach ($images as $image) : ?>
+                  <?php if ($image['color'] != '') : ?>
+                  <option value="<?= ucfirst($image['color']) ?>"><?= ucfirst($image['color']) ?></option>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </select>
+              </span>
+            </div>
+            <div class="selector-wrapper">
+              <label for="product-select-option-1">Kích thước</label>
+              <span class="custom-dropdown custom-dropdown--white">
+              <select class="single-option-selector custom-dropdown__select custom-dropdown__select--white" data-option="option2" id="product-select-option-1" name="size">
+                <?php foreach ($product->details['size'] as $size) : ?>
+                  <?php if ($size != '') : ?>
+                  <option value="<?= $size ?>"><?= $size ?></option>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </select>
+              </span>
+            </div>
+            <!-- <select id="product-select" name="id" style="display:;">
+              <option data-op1="den" data-op2="xs" data-op3="" value="1031314379" data-available="true">Đen / XS - 320,000₫</option>
+              <option data-op1="den" data-op2="s" data-op3="" value="1031314380" data-available="true">Đen / S - 320,000₫</option>
+            </select> -->
+          </div>
+          <div class="product-items clearfix size ">
+            <label>Màu sắc:</label>
+            <div class="option-select">
+              <ul class="option-1">
+                <?php foreach ($images as $image) : ?>
+                  <?php if ($image['color']!='') : ?>
+                    <li><a rel="no-refresh" class="gray-btn color-den" data-op1="den" data-op2="xs">
+                      <img src="<?= $this->url->get('img/product/'.$image['link']) ?>" alt="den" />
+                      <span><?= ucfirst($image['color']) ?></span>
+                      </a>
+                    </li>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
+          <div class="product-items clearfix size">
+            <label>Kích thước:</label>
+            <div class="option-select">
+              <ul class="option-2">
+                <?php foreach ($product->details['size'] as $size) : ?>
+                  <?php if ($size != '') : ?>
+                  <li>
+                    <a rel="no-refresh" class="gray-btn color-xs" data-op1="den" data-op2="<?= strtolower($size) ?>">
+                    <?= $size ?></a>
+                  </li>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
+          <script>
+            /*add class selected for option*/
+            $('.option-1 li:eq(0)').addClass('selected');
+            $('.option-2 li:eq(0)').addClass('selected');
+            
+            $('.option-1>li>a').click(function(){
+            	if(!$(this).hasClass('soldout')){
+            		$('.option-1 li ').removeClass('selected');
+            		$(this).parent('li').addClass('selected');
+            		index = $(this).parent('li').index();
+            		$('#product-select-option-0>option:nth-child('+(index+1)+')').prop('selected', true);
+            		$('#product-select-option-0').change();
+            		var op1 = $(this).data('op1');
+            		$('.option-2 a').removeClass('soldout');
+            		$('#product-select option[data-op1="'+op1+'"]').each(function(){
+            			if($(this).data("available") == false){
+            				$('.option-2 a[data-op2="'+$(this).data('op2')+'"]').addClass('soldout');
+            			}
+            		});
+            	}
+            });
+            $('.option-2>li>a').click(function(){
+            	if(!$(this).hasClass('soldout')){
+            		$('.option-2 li ').removeClass('selected');
+            		$(this).parents('li').addClass('selected');
+            		index = $(this).parent('li').index();
+            		$('#product-select-option-1>option:nth-child('+(index+1)+')').prop('selected', true);
+            		$('#product-select-option-1').change();
+            	}
+            });
+            $('.option-3>li>a').click(function(){
+            	$('.option-3 li ').removeClass('selected');
+            	$(this).parents('li').addClass('selected');
+            	index = $(this).parent('li').index();
+            	$('#product-select-option-2>option:nth-child('+(index+1)+')').prop('selected', true);
+            	$('#product-select-option-2').change();
+            });
+          </script>
+          <div class="select-wrapper">
+            <label>Số lượng:</label>
+            <select name="quantity" class="quantity-input">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div class="size_intro">
+            <a target="_blank" href="<?= $this->url->get('size') ?>">
+              <div class="icon-blue">
+                <img src="<?= $this->url->get('img/14/icon-fit-analytics.svg') ?>" alt="">
+              </div>
+              Hướng dẫn lựa size
+            </a>
+          </div>
+          <div class="action_btn">
+            <button id="add-to-cart" class=" btn-detail addtocart btn-color-add btn-min-width btn-mgt" name="add"> 
+            Thêm vào giỏ 
+            <!-- </button>
+            <button id="buy-now"  class=" btn-buynow" name="buy"> 
+            Mua ngay 
+            </button> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="policy clearfix">
+        <div class="policy-item">
+          <h4>Thông tin sản phẩm</h4>
+          <div class="content">
+            <p><?= $product->details['description'] ?></p>
+          </div>
+        </div>
+        <div class="policy-item">
+          <h4>Ưu đãi member vip</h4>
+          <div class="content">
+            Vui lòng đăng kí tài khoản mua hàng để được tích điểm làm Member Vip:<br/>
+            - Tài khoản Sliver được giảm 5% khi tích đủ 5tr<br/>
+            - Tài khoản Gold được giảm 10% khi tích đủ 10tr<br/>
+            - Tài khoản Diamond được giảm 15% khi tích đủ 20tr<br/>
+          </div>
+        </div>
+        <div class="policy-item">
+          <h4>Chính Sách Đổi Trả Hàng</h4>
+          <div class="content">
+            - Được kiểm tra hàng trước khi nhận hàng<br/>
+            - Đổi/ Trả trong vòng 7 ngày kể từ khi nhận hàng<br/>
+            - Miễn phí đổi trả nếu lỗi sai sót từ phía SomeHow Store<br/>
+            - Vui lòng gửi hàng Đổi/Trả lại tại địa chỉ 332 Cao Đạt P.1 Quận 5<br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(".product-thumb img").click(function(){
+  	$(".product-thumb").removeClass('active');
+  	$(this).parents('li').addClass('active');
+  	$(".product-image-feature").attr("src",$(this).attr("data-image"));
+  	$(".product-image-feature").attr("data-zoom-image",$(this).attr("data-image"));
+  	$(".product-image-feature").data('elevateZoom');
+  });
+  
+  $(".product-thumb").first().addClass('active');
+  
+</script>
+<script>
+  $(document).ready(function(){
+  	/*function numbercart(){
+  		var cart = null;
+  		jQuery.getJSON('', function(cart, textStatus) {
+  			$('.user-cart .cart-count, .cart-fixscroll .number-count, .cart-top .number-count').html( cart.item_count );
+  		});
+  	}
+  	$('#add-to-cart').click(function(e){
+  		e.preventDefault() ;	// remove all event
+  		var params = {
+  			type: 'POST',
+  			url: '',
+  			async : false,
+  			data: jQuery('#add-item-form').serialize(),
+  			dataType: 'json',
+  			success: function(line_item) {
+  				numbercart();
+  				alert('Thêm sản phẩm thành công');
+  			}
+  		};
+  		jQuery.ajax(params);
+      alert(params['data']);
+  	});
+  	$('#buy-now').click(function(e){	
+  		e.preventDefault() ;
+  		var params = {
+  			type: 'POST',
+  			url: '/cart/add.js',
+  			async : false,
+  			data: jQuery('#add-item-form').serialize(),
+  			dataType: 'json',
+  			success: function(line_item) {
+  				window.location = '/checkout';
+  			}
+  		};
+  		jQuery.ajax(params);
+  	});*/
+  });
+</script>
+<script>
+  $(document).ready(function(){
+  	$('a[data-spy=scroll]').click(function(){
+  		event.preventDefault() ;
+  		$('body').animate({scrollTop: ($($(this).attr('href')).offset().top - 20) + 'px'}, 500);
+  	})
+  });
+  var slug = function (str) 
+  {  
+  	str= str.toLowerCase();  
+  	str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");  
+  	str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");  
+  	str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i");  
+  	str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");  
+  	str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");  
+  	str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");  
+  	str= str.replace(/đ/g,"d");  
+  	str= str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,"-"); 
+  	str= str.replace(/-+-/g,"-"); //thay thế 2- thành 1- 
+  	str= str.replace(/^\-+|\-+$/g,"");  
+  	return str;  
+  }
+  
+  
+  var selectCallback = function(variant, selector) {
+  	if (variant && variant.available) {
+  		if(variant.featured_image != null)
+  		{
+  			$(".product-thumb").removeClass('active');
+  			var img = variant.featured_image.src;
+  			img = img.replace("https:", "");
+  			$(".product-thumb img[data-image='"+Haravan.resizeImage(img,'master')+"']").click().parents('li').addClass('active');
+  		}
+  		if (variant.sku != null ){
+  			jQuery('.pro_sku').html('Item code: ' +variant.sku);
+  		}
+  		jQuery('#add-to-cart').removeAttr('disabled').removeClass('disabled').show();
+  		jQuery('#buy-now').removeClass('disabled').removeAttr('disabled').show();
+  		if(variant.price < variant.compare_at_price){
+  			jQuery('.product-price').html("<span>" + Haravan.formatMoney(variant.price, "{{amount}}₫") + "</span><del>" + Haravan.formatMoney(variant.compare_at_price, "{{amount}}₫") + "</del>");
+  			var pro_sold = variant.price ;
+  			var pro_comp = variant.compare_at_price / 100;
+  			var sale = 100 - (pro_sold / pro_comp) ;
+  			var kq_sale = Math.round(sale);
+  			//jQuery('#surround .product-sale span').html("<label class='sale-lb'>Sale</label> "+kq_sale + '%');
+  		} else {
+  			jQuery('.product-price').html("<span>" + Haravan.formatMoney(variant.price, "{{amount}}₫" + "</span>"));
+  		}
+  		var total_option = variant.options.length;
+  		var title1 = slug(variant.option1);
+  		$('.option-select .option-1 li').each(function(){
+  			var mausac = $(this).find('a').data('op1');
+  			if (title1 == mausac){
+  				$(this).addClass('selected');
+  			}
+  			if($('.option-2').length > 0){
+  				$('.option-2 a').removeClass('soldout');
+  				$('#product-select option[data-op1="'+title1+'"]').each(function(){
+  					if($(this).data("available") == false){
+  						$('.option-2 a[data-op2="'+$(this).data('op2')+'"]').addClass('soldout');
+  					}
+  				});
+  			}
+  		})
+  		if(total_option == 2){
+  			var title2 = slug(variant.option2);
+  			$('.option-select .option-2 li').each(function(){
+  				var mausac = $(this).find('a').data('op2');
+  				if (title2 == mausac){
+  					$(this).addClass('selected');
+  				}
+  			})
+  		}
+  		if(total_option == 3){
+  			var title3 = slug(variant.option3);
+  			$('.option-select .option-3 li').each(function(){
+  				var mausac = $(this).find('a').data('op3');
+  				if (title3 == mausac){
+  					$(this).addClass('selected');
+  				}
+  			})
+  		}
+  	} else {
+  		jQuery('#add-to-cart').addClass('disabled').attr('disabled', 'disabled').hide();
+  		jQuery('#buy-now').addClass('disabled').attr('disabled', 'disabled').hide();
+  	}
+  	var firstVariantId = $('#product-select').val();
+  	var qtyInit = $('select[name="quantity"]').val();
+  	$('#stock-box').html('');
+  	$.ajax({
+  		url: "/inventory_location.js?variant_id=" + firstVariantId + "&quantity=" + qtyInit,
+  		success:function(data){
+  			if( data.inventory_locations.length > 0 ){
+  				$('#stock-box').show();
+  				var array_html = '';
+  				//var inventTitle = 'CÓ ' + data.inventory_locations.length + ' CỬA HÀNG';
+  				//$('.invent h4 strong').html(inventTitle);
+  				$.each(data.inventory_locations,function(i,v){
+  					array_html += "<li class='store-item'>";
+  					array_html += "<span class='bold-light'>" + v.location_name + " (" + v.location_phone + ") :</span>";
+  					array_html += "<span class='desc'>" + v.location_address + "</span></label></li>";
+  					$('#stock-box').html(array_html);
+  				});
+  			} else {
+  				$('#stock-box').html('Hiện không còn cửa hàng nào còn sản phẩm này');
+  			}
+  		}
+  	});
+  };			
+</script>
+<script>
+  $(document).ready(function(){
+  
+  	if($(window).width() > 960){
+  		jQuery(".product-image-feature").elevateZoom({
+  			gallery:'sliderproduct-pc',
+  			scrollZoom : true
+  		});
+  	}
+  
+  	if($("#sliderproduct-pc").length > 0 ) {
+  		if($(window).width() >= 992 ){
+  			$("#sliderproduct-pc").mThumbnailScroller({
+  				axis:"y",
+  				type:"click-thumb",
+  				theme:"buttons-out",
+  				type:"hover-precise",
+  				contentTouchScroll: true
+  			});
+  			setTimeout(function(){
+  				$('#sliderproduct-pc').css('height',$('.product-image-feature').height());
+  				$('#sliderproduct-pc').show();
+  			},1500);
+  		}
+  	}
+  	$('#sliderproduct .item img').click(function(){
+  		var img = $(this).data('image');
+  		$(".product-image-feature").attr('src', img);
+  	});
+  });
+</script>
+
+
+

@@ -1,0 +1,52 @@
+<div id="layout-page" class="bgfafafa">
+	<div class="container">
+		<div id="customer-login">
+			<h1>Tạo tài khoản</h1>
+			<div class="userbox">
+				<form accept-charset='UTF-8' action='' id='create_customer' method='post'>
+				<input name='form_type' type='hidden' value='create_customer'>
+				<input name='utf8' type='hidden' value='✓'>
+				<div id="last_name" class="clearfix large_form">
+
+					<?php if (isset($errors['last_name'])): ?>
+						<div class="errors"><?= $errors['last_name'] ?></div>
+					<?php endif; ?>
+					<input required type="text" value="" name="last_name" placeholder="Họ" id="last_name" class="text" size="30" />
+					
+					<?php if (isset($errors['first_name'])): ?>
+						<div class="errors"><?= $errors['first_name'] ?></div>
+					<?php endif; ?>
+					<input required type="text" value="" name="first_name" placeholder="Tên" id="first_name" class="text" size="30" />
+					
+					<?php if (isset($errors['email'])): ?>
+						<div class="errors"><?= $errors['email'] ?></div>
+					<?php endif; ?>
+					<input required type="email" value="" placeholder="Email" name="email" id="email" class="text" size="30" />
+
+					<input required type="password" value="" placeholder="Mật khẩu" name="password" id="password" class="password text" size="30" />
+				</div>
+
+				<div class="action_bottom">
+					<input class="btn-more btn-login" type="submit" value="Đăng ký" />			
+				</div>
+				<div class="req_pass">
+					<a class="btn-more btn-register" href="<?= $this->url->get('dang-nhap') ?>">Quay về</a>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div><!-- #register -->
+<script>
+	$(document).ready(function () {
+		$('#email').blur(function () {
+			var mail = $(this).val();
+			$.post("<?= $this->url->get('frontend/login/checkUser') ?>", {email:mail}, function (data) {
+				if (data!=0) {
+					alert("Email này đã có người đăng ký rồi!");
+					$('#email').val('');
+				}
+			});
+		});
+	});
+</script>

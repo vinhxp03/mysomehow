@@ -1,0 +1,60 @@
+a{
+	color: #9100ff;
+}
+a:hover{
+	color: #000;
+}
+.main .logo {
+	background-image: url("//theme.hstatic.net/1000026602/1000366767/14/logo.svg?v=581");
+	background-repeat: no-repeat;
+	background-size: 100px;
+	width: 100px;
+}
+
+.main .logo .logo-text {
+	padding-top: 86px;
+	text-indent: -9999em;
+	height: 0;
+}
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-icon-wrapper .order-summary-toggle-icon,
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-text .order-summary-toggle-dropdown,
+.step-footer .step-footer-previous-link .previous-link-icon,
+.step-footer .step-footer-previous-link:hover .previous-link-icon{
+	fill: #9100ff;
+}
+.order-summary-toggle .order-summary-toggle-inner .order-summary-toggle-text{
+	color: #fcce6f;
+}
+.btn{
+	background: #fff;
+	font-size: 12px;
+	color: #333;
+	text-transform: uppercase;
+	border: 1px solid #a9a9a9;
+	transition: all 0.3s ease-in-out;
+	border-radius: 0;
+}
+.btn:hover{
+	background: #000;
+	color: #fcce6f;
+}
+.radio-wrapper .radio-input .input-radio:checked, .checkbox-wrapper .checkbox-input .input-checkbox:checked{
+	box-shadow: 0 0 0 10px #fcce6f inset;
+}
+#form_update_shipping_method > div > div:nth-child(3){
+	display: none;
+}
+@media screen and (max-width:999px){
+	.banner .logo {
+		background-image: url("//theme.hstatic.net/1000026602/1000366767/14/logo.svg?v=581");
+		background-repeat: no-repeat;
+		background-size: 100px;
+		width: 100px;
+	}
+
+	.banner .logo .logo-text {
+		padding-top: 86px;
+		text-indent: -9999em;
+		height: 0;
+	}
+}

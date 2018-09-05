@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="23px" viewBox="0 0 24 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>415DE4BB-EB11-4291-9AF7-3D6E8A613278</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-Web" transform="translate(-27.000000, -736.000000)">
+            <g id="Product" transform="translate(0.000000, 660.000000)">
+                <g id="PRODUCT" transform="translate(27.000000, 34.000000)">
+                    <g id="Product" transform="translate(0.000000, 42.000000)">
+                        <g id="Fit-Analytics">
+                            <g id="icon_fit_analytics">
+                                <path d="M11,6.66666667 L11,4 L12,4 C12.5522847,4 13,3.55228475 13,3 C13,2.44771525 12.5522847,2 12,2 C11.4477153,2 11,2.44771525 11,3 L9,3 C9,1.34314575 10.3431458,0 12,0 C13.6568542,0 15,1.34314575 15,3 C15,4.30621883 14.1651924,5.41745788 13,5.82929429 L13,6.66666667 L24,14 L24,16 L-1.29674049e-13,16 L-1.29674049e-13,14 L11,6.66666667 Z M12,9 L20,14 L4,14 L12,9 Z" id="Shape" fill="#FFFFFF" fill-rule="evenodd"></path>
+                                <rect id="Rectangle-1593" fill="#FFFFFF" fill-rule="evenodd" x="13" y="14" width="1" height="2"></rect>
+                                <path d="M2,19 L2,21" id="Line" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                                <path d="M22,22 L2,22" id="Line-Copy-9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                                <path d="M12,19 L12,21" id="Line-Copy-5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                                <path d="M7,19.5 L7,21" id="Line-Copy-10" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                                <path d="M17,19.5 L17,22" id="Line-Copy-11" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                                <path d="M22,19 L22,21" id="Line-Copy-6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

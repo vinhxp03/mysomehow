@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>MySomeHow admin</title>
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="<?= $this->url->get('ad/vendors/iconfonts/mdi/css/materialdesignicons.min.css') ?>">
+	<link rel="stylesheet" href="<?= $this->url->get('ad/vendors/css/vendor.bundle.base.css') ?>">
+	<link rel="stylesheet" href="<?= $this->url->get('ad/css/progress-bar.css') ?>">
+
+	<script src="<?= $this->url->get('js/jquery.min.js') ?>"></script>
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<!-- End plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="<?= $this->url->get('ad/css/style.css') ?>">
+	<!-- endinject -->
+	<link rel="shortcut icon" href="<?= $this->url->get('img/14/favicon.png') ?>" />
+	<?php $this->assets->outputJs(); ?>
+</head>
+<body>
+	<?php $controller = $this->router->getControllerName() ?>
+	<?php if(($controller != 'login') && ($controller != 'notfound')): ?>
+	<div class="container-scroller">
+
+		<!-- load navbar -->
+		<?php $this->partial('shared/nav') ?>
+		<!-- partial:partials/_sidebar.html -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- load sidebar -->
+			<?php $this->partial('shared/sidebar') ?>
+			<!-- partial -->
+      		<div class="main-panel">
+				<div class="content-wrapper">
+					<?php echo $this->getContent(); ?>
+				</div>
+				<!-- content-wrapper ends -->
+    			<!-- partial:partials/_footer.html -->
+    			<?php $this->partial('shared/footer') ?>
+    			<!-- partial -->
+      		</div>
+      		<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+	<?php else: ?>
+		<?php echo $this->getContent(); ?>
+	<?php endif; ?>
+	<!-- container-scroller -->
+
+	<!-- plugins:js -->
+	<script src="<?= $this->url->get('ad/vendors/js/vendor.bundle.base.js') ?>"></script>
+	<script src="<?= $this->url->get('ad/vendors/js/vendor.bundle.addons.js') ?>"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page-->
+	<!-- End plugin js for this page-->
+	<!-- inject:js -->
+	<script src="<?= $this->url->get('ad/js/off-canvas.js') ?>"></script>
+	<script src="<?= $this->url->get('ad/js/misc.js') ?>"></script>
+	<!-- endinject -->
+	<!-- Custom js for this page-->
+	<script src="<?= $this->url->get('ad/js/dashboard.js') ?>"></script>
+	<!-- End custom js for this page-->
+</body>
+
+</html>

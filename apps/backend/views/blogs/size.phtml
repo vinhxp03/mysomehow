@@ -1,0 +1,37 @@
+<?php  ?>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <?php $this->flashSession->output() ?>
+      <h4 class="card-title" style="float: left;">Quản lý size</h4>
+      <a href="<?= $this->url->get('backend/blogs/addsize') ?>" class="btn btn-success btn-fw mdi mdi-database-plus" style="float: right; color: white"> Tạo mới</a><br>
+      <p class="card-description"><hr></p>
+      <div class="table-outter-wrapper">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên</th>
+              <th>Hình ảnh</th>
+              <th>Chi tiết</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $count = 1; foreach ($sizes as $size): ?>
+            <tr>
+              <td><?= $count ?></td>
+              <td><?= $size->title ?></td>
+              <td>
+                <a href="<?= $this->url->get('img/article/'.$size->images) ?>"><img src="<?= $this->url->get('img/article/'.$size->images) ?>" width="100%"></a>
+              </td>
+              <td>
+                <a href="<?= $this->url->get('img/article/details/'.$size->images_details) ?>"><img src="<?= $this->url->get('img/article/details/'.$size->images_details) ?>" alt=""></a>
+              </td>
+            </tr>
+          <?php $count += 1; endforeach;?>
+          </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+</div>

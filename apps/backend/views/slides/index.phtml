@@ -1,0 +1,44 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+    	<?php $this->flashSession->output() ?>
+      <h4 class="card-title" style="float: left;">Quản lý slide</h4>
+      <a href="<?= $this->url->get('backend/slides/add') ?>" class="btn btn-success btn-fw mdi mdi-database-plus" style="float: right; color: white"> Tạo mới</a><br>
+      <p class="card-description"><hr></p>
+      <div class="table-outter-wrapper">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Links</th>
+              <th>Hình ảnh</th>
+              <th>Ngày tạo</th>
+              <th>Ngày update</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          	<?php $count = 1; foreach ($slides as $slide): ?>
+            <tr>
+              <td><?= $count ?></td>
+              <td><?= $slide->title ?></td>
+              <td><?= $slide->description ?></td>
+              <td><a target="_blank" href="<?= $this->url->get(''.$slide->links) ?>">
+                <?= mb_strimwidth($slide->links, 0, 15, '...') ?></a></td>
+              <td><?= Phalcon\Tag::image('img/slides/'.$slide->images, true) ?></td>
+              <td><?= date('d/m/Y', $slide->created_at) ?></td>
+              <td><?= date('d/m/Y', $slide->updated_at) ?></td>
+              <td style="font-size: 20px">
+              	<a href="<?= $this->url->get('backend/slides/update/'.$slide->_id) ?>" class="mdi mdi-pencil" title="Update"></a>
+              	<a href="<?= $this->url->get('backend/slides/delete/'.$slide->_id) ?>" class="mdi mdi-delete" title="Delete" onclick="return confirm('Bạn có chắc muốn xóa?')"></a>
+              </td>
+            </tr>
+        	<?php $count += 1; endforeach;?>
+          </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div id="layout-page" class="pd40">
+	<div  class="container">
+		<div class="main-title2 text-center mb30">
+			<h1>Tài khoản của bạn <a class="logout" href="<?= $this->url->get('account/logout') ?>"><span class="fa fa-sign-out"></span>Thoát</a></h1>
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+			<?= $this->flashSession->output() ?>
+		</div><br>
+		<div id="customer_orders" class="col-xs-12">
+			<p>Bạn chưa đặt mua sản phẩm.</p>
+		</div>
+		<div class="col-xs-12" id="customer_sidebar">
+			<h2><?= $this->session->get("userName") ?></h2>
+			<p class="email "><?= $this->session->get("email") ?></p>
+			<div class="address ">
+				<p></p>
+				<p></p>
+				<p> </p>
+				<p></p>
+				<a id="view_address" href="<?= $this->url->get('sua-thong-tin') ?>">Chỉnh sửa thông tin</a><br><br>
+				<a id="view_address" href="<?= $this->url->get('doi-mat-khau') ?>">Chỉnh sửa mật khẩu</a>
+			</div>
+		</div>
+	</div>
+</div>

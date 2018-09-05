@@ -1,0 +1,18 @@
+<?php foreach ($categories as $category) : ?>
+<?php if (isset($params)) : ?>
+	<?php if ($category->_id == $params) : ?>
+	<div class="row clearfix collection-top">
+		<div class="collection-left">
+			<h1><?= $category->title ?></h1>
+			<div class="description">
+				<img src="<?= $category->images['image'] != null ? $this->url->get('img/collection/'.$category->images['image'])  : $this->url->get('img/collection/logo.jpg')?>" alt="Sản Phẩm Bán Chạy" />
+			</div>
+		</div>
+		<div class="collection-img hidden-xs">
+			<div class="img" style="background: url(<?= $this->url->get('img/file/'.$category->images['banner']) ?>) no-repeat;background-size: cover;background-position: center;" ></div>
+		</div>
+	</div>
+	<hr>
+	<?php endif; ?>
+<?php endif; ?>
+<?php endforeach; ?>

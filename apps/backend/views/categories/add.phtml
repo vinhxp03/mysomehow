@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="float: left;"><b>Thêm mới danh mục sản phẩm</b></h4>
+          <a href="<?= $this->url->get('backend/categories') ?>" class="btn btn-success btn-fw mdi mdi-view-list" style="float: right; color: white"> Danh sách</a><br>
+          <hr>
+          <form class="form-sample" method="post" enctype="multipart/form-data">
+            <p class="card-description">
+              Thông tin danh mục sản phẩm
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Tiêu đề</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" required name="title" value="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Danh mục cha</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="parent_id">
+                      <option value=""></option>
+                      <?php foreach ($categories as $category) : ?>
+                      <?php if (is_null($category->parent_id)) : ?>
+                        <option value="<?= $category->_id ?>"><?= $category->title ?></option>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- row images -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Hình ảnh</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="images" name="image" placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Banner</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="images" name="banner" placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="color: white">Thêm mới</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content-wrapper ends -->

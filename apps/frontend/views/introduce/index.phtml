@@ -1,0 +1,18 @@
+<div class="page pb30">
+	<div class="container">
+		<div class="fix-breadcrumb">
+			<ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+				<li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+				<li class="active"><span><?= $blogs->title ?></span></li>
+			</ol>
+		</div>
+		<div id="layout-page">
+			<div class="main-title2 text-center">
+				<h1><?= $blogs->title ?></h1>
+			</div>
+			<div class="content-page">
+				<?= $blogs->content ?>
+			</div>
+		</div>
+	</div>
+</div>

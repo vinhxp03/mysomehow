@@ -1,0 +1,87 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" style="float: left;"><b>Thêm mới admin</b></h4>
+          <a href="<?= $this->url->get('backend/admin') ?>" class="btn btn-success btn-fw mdi mdi-view-list" style="float: right; color: white"> Danh sách</a><br>
+          <hr>
+          <form class="form-sample" method="post">
+            <p class="card-description">
+              Thông tin admin
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Họ Tên</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="display_name" value="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Điện thoại</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="phone" value="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="email" value="" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Địa chỉ</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="address" value="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Mật khẩu</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="password" value="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Role</label>
+                  <div class="col-sm-10">
+                    <div class="col-md-2">
+                      <div class="form-check form-check-flat">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="role[]"> 123
+                        <i class="input-helper"></i></label>
+                      </div>
+                      <div class="form-check form-check-flat">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="role[]"> 456
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="color: white">Thêm mới</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- content-wrapper ends -->

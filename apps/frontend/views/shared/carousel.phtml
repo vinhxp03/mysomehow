@@ -1,0 +1,14 @@
+<div id="owl-index" class="owl-carousel owl-theme">
+	<?php foreach ($slides as $slide) : ?>
+	<div class="item">
+		<?= Phalcon\Tag::image('img/slides/'.$slide->images) ?>
+		<div class="slider-caption">
+			<div class="slider-title" >
+			</div>
+			<div class="slider-des ">
+			</div>
+			<a href="<?= $this->url->get(''.$slide->links) ?>" class="slider-btn">Xem Thêm</a>
+		</div>
+	</div>
+	<?php endforeach; ?>
+</div>

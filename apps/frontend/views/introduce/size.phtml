@@ -1,0 +1,59 @@
+<?php if (isset($sizes)) : ?>
+<div id="blogs">
+	<div class="container">
+		<div class="fix-breadcrumb " >
+			<ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+				<li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+				<li class="active"><span>Hướng dẫn lựa size</span></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="main-title2 text-center mb30">
+				<h1>Hướng dẫn lựa size</h1>
+			</div>
+			<div class="size-list clearfix mb30">
+				<?php foreach ($sizes as $size) : ?>
+				<div class="size-intro" >
+					<div class="img">
+						<a href="<?= $this->url->get('huong-dan-lua-chon-size/'.$size->_id) ?>">
+							<div class="img-show" style="background: url('<?= $this->url->get('img/article/'.$size->images) ?>') no-repeat;background-size: cover;background-position: center;">
+							</div>
+						</a>
+					</div>
+					<div class="article-info">
+						<p>Hướng dẫn lựa size</p>
+						<h3><a href="<?= $this->url->get('huong-dan-lua-chon-size/'.$size->_id) ?>"><?= $size->title ?></a></h3>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?php elseif (isset($size)) : ?>
+<div id="article" class="article-detail clearfix">
+	<div class="container" >
+		<div class="fix-breadcrumb " >
+		   <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+		      <li><a href="<?= $this->url->get('') ?>" target="_self">Trang chủ</a></li>
+		      <li><a href="<?= $this->url->get('huong-dan-lua-chon-size') ?>" target="_self">Hướng dẫn lựa size</a> </li>
+		      <li class="active"><span><?= $size->title ?></span></li>
+		   </ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 articles clearfix">
+				<div class="main-title2 text-center mb30"><br>
+				   <h1><b><?= $size->title ?></b></h1>
+				</div>
+				<div class="content-page">
+				   <div class="article-content">
+				      <div class="body-content">
+				         <p><img src="<?= $this->url->get('img/article/details/'.$size->images_details) ?>"></p>
+				      </div>
+				   </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
